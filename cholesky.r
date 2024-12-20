@@ -12,8 +12,8 @@ set.seed(1988)
 #############
 
 # Generate independent standard normal variables
-n <- 1000  # Number of observations
-p <- 3    # Number of variables
+n <- 1000 
+p <- 3   
 x <- matrix(rnorm(n * p), nrow = n, ncol = p)
 
 # Define the target correlation matrix
@@ -27,15 +27,23 @@ sigma <- matrix(c(
 ############# Perform Cholesky decomposition
 #############
 
-L <- chol(sigma)
-y <- x %*% t(L)
+L <- t(chol(sigma)) # Use the transpose to get the lower triangular matrix
+y <- x %*% L # Transform the independent data
 correlated_data <- as.data.frame(y)
+
+# Verify correlation
+print(round(cor(correlated_data), 2)) # Should match sigma
+print(sigma)
+
 
 #############
 ############# Print correlation matrix
 #############
 
+print("Generated Correlation Matrix:")
 print(round(cor(correlated_data), 2))
+
+print("Target Correlation Matrix:")
 print(sigma)
 
 #############
