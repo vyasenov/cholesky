@@ -27,14 +27,16 @@ sigma <- matrix(c(
 ############# Perform Cholesky decomposition
 #############
 
-L <- t(chol(sigma)) # Use the transpose to get the lower triangular matrix
-y <- x %*% L # Transform the independent data
-correlated_data <- as.data.frame(y)
+L <- t(chol(sigma))
+tau <- diag(c(1,2,3))
+y <- t(tau %*% L %*% t(x))
 
-# Verify correlation
-print(round(cor(correlated_data), 2)) # Should match sigma
+#############
+############# Verify correlation
+#############
+
+print(round(cor(y), 2))
 print(sigma)
-
 
 #############
 ############# Print correlation matrix
@@ -50,4 +52,4 @@ print(sigma)
 ############# Visualize the results
 #############
 
-pairs(correlated_data, main = "Scatterplot Matrix of Correlated Variables")
+pairs(y, main = "Scatterplot Matrix of Correlated Variables")
