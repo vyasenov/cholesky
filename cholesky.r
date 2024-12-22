@@ -28,8 +28,8 @@ sigma <- matrix(c(
 #############
 
 L <- t(chol(sigma))
-tau <- diag(c(1,2,3))
-y <- t(tau %*% L %*% t(x))
+diag <- diag(c(1,1,1))
+y <- t(diag %*% L %*% t(x))
 
 #############
 ############# Verify correlation
