@@ -43,7 +43,7 @@ print(sigma)
 #############
 
 print("Generated Correlation Matrix:")
-print(round(cor(correlated_data), 2))
+print(round(cor(y), 2))
 
 print("Target Correlation Matrix:")
 print(sigma)
@@ -52,4 +52,6 @@ print(sigma)
 ############# Visualize the results
 #############
 
-pairs(y, main = "Scatterplot Matrix of Correlated Variables")
+pairs(y, 
+      main = "Scatterplot Matrix of Correlated Variables",
+      upper.panel = NULL)
